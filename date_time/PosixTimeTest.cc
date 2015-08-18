@@ -63,4 +63,26 @@ TEST_F(PosixTimeTest, diffTest)
   ASSERT_TRUE( true );
 }
 
+TEST_F(PosixTimeTest, fromStringTest)
+{
+  using namespace boost::posix_time;
+  using namespace boost::gregorian;
+      
+  std::string str_date = "20150818";
+  std::string str_time = "11:29:59";
+  int ms = 900;
+
+  date d(from_undelimited_string(str_date));
+  std::cout <<d <<std::endl;
+  
+  ptime cur(d, duration_from_string(str_time));
+  std::cout <<cur <<std::endl;
+
+  cur = cur + milliseconds(ms);
+  std::cout <<cur <<std::endl;
+      
+  ASSERT_TRUE( true );
+}
+
+
 };  
