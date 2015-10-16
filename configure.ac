@@ -32,15 +32,24 @@ AC_SUBST(LT_CURRENT)
 AC_SUBST(LT_REVISION)
 AC_SUBST(LT_AGE)
 
-topdir=`pwd`
-AC_SUBST(topdir)
+home_3rd=~/3rd
+home_es=~/es
+
+if test -d /app/3rd ; then
+   home_3rd=/app/3rd
+fi
+
+if test -d /app/es ; then
+   home_es=/app/es
+fi
+
 
 dnl soil lib
 AC_ARG_WITH([soil],
     [AS_HELP_STRING([--with-soil],
-        [home path of the soil, defaults to $topdir/../soil])],
+        [home path of the soil, defaults to $home_es/soil])],
     [SOIL_HOME="$withval"],
-    [SOIL_HOME="$topdir/../soil"])
+    [SOIL_HOME="$home_es/soil"])
 AC_SUBST([SOIL_HOME])
 
 SOIL_CPPFLAGS="-I$SOIL_HOME/include"
@@ -51,9 +60,9 @@ AC_SUBST(SOIL_LIBADD)
 dnl boost lib
 AC_ARG_WITH([boost],
     [AS_HELP_STRING([--with-boost],
-        [home path of the boost, defaults to $topdir/../boost])],
+        [home path of the boost, defaults to $home_3rd/boost])],
     [BOOST_HOME="$withval"],
-    [BOOST_HOME="$topdir/../boost"])
+    [BOOST_HOME="$home_3rd/boost"])
 AC_SUBST([BOOST_HOME])
 
 BOOST_CPPFLAGS="-I$BOOST_HOME/include -DBOOST_ALL_DYN_LINK"
@@ -74,7 +83,7 @@ AC_ARG_WITH([gtest],
     [AS_HELP_STRING([--with-gtest],
         [home path of the gtest, defaults to $topdir/../gtest])],
     [GTEST_HOME="$withval"],
-    [GTEST_HOME="$topdir/../gtest"])
+    [GTEST_HOME="$home_3rd/gtest"])
 AC_SUBST([GTEST_HOME])
 
 GTEST_CPPFLAGS=-I$GTEST_HOME/include
