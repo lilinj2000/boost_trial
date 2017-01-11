@@ -92,7 +92,8 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
-am_unittest_OBJECTS = unittest-PosixTimeTest.$(OBJEXT)
+am_unittest_OBJECTS = unittest-PosixTimeTest.$(OBJEXT) \
+	unittest-RegexTest.$(OBJEXT)
 unittest_OBJECTS = $(am_unittest_OBJECTS)
 am__DEPENDENCIES_1 =
 unittest_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
@@ -307,7 +308,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-unittest_SOURCES = PosixTimeTest.cc
+unittest_SOURCES = PosixTimeTest.cc RegexTest.cc
 unittest_CPPFLAGS = -I$(top_srcdir) -I.. -I../include\
 		$(BOOST_CPPFLAGS) \
 		$(GTEST_CPPFLAGS) \
@@ -378,6 +379,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unittest-PosixTimeTest.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unittest-RegexTest.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -413,6 +415,20 @@ unittest-PosixTimeTest.obj: PosixTimeTest.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='PosixTimeTest.cc' object='unittest-PosixTimeTest.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(unittest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o unittest-PosixTimeTest.obj `if test -f 'PosixTimeTest.cc'; then $(CYGPATH_W) 'PosixTimeTest.cc'; else $(CYGPATH_W) '$(srcdir)/PosixTimeTest.cc'; fi`
+
+unittest-RegexTest.o: RegexTest.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(unittest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT unittest-RegexTest.o -MD -MP -MF $(DEPDIR)/unittest-RegexTest.Tpo -c -o unittest-RegexTest.o `test -f 'RegexTest.cc' || echo '$(srcdir)/'`RegexTest.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/unittest-RegexTest.Tpo $(DEPDIR)/unittest-RegexTest.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='RegexTest.cc' object='unittest-RegexTest.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(unittest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o unittest-RegexTest.o `test -f 'RegexTest.cc' || echo '$(srcdir)/'`RegexTest.cc
+
+unittest-RegexTest.obj: RegexTest.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(unittest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT unittest-RegexTest.obj -MD -MP -MF $(DEPDIR)/unittest-RegexTest.Tpo -c -o unittest-RegexTest.obj `if test -f 'RegexTest.cc'; then $(CYGPATH_W) 'RegexTest.cc'; else $(CYGPATH_W) '$(srcdir)/RegexTest.cc'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/unittest-RegexTest.Tpo $(DEPDIR)/unittest-RegexTest.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='RegexTest.cc' object='unittest-RegexTest.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(unittest_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o unittest-RegexTest.obj `if test -f 'RegexTest.cc'; then $(CYGPATH_W) 'RegexTest.cc'; else $(CYGPATH_W) '$(srcdir)/RegexTest.cc'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

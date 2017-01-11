@@ -2,7 +2,7 @@ AUTOMAKE_OPTIONS = foreign
 
 noinst_PROGRAMS = unittest
 
-unittest_SOURCES = PosixTimeTest.cc
+unittest_SOURCES = PosixTimeTest.cc RegexTest.cc
 
 unittest_CPPFLAGS = -I$(top_srcdir) -I.. -I../include\
 		$(BOOST_CPPFLAGS) \
