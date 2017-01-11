@@ -1,3 +1,5 @@
 AUTOMAKE_OPTIONS = foreign
 
-SUBDIRS = date_time
+SUBDIRS = utest
+
+include $(top_srcdir)/Makefile.am.coverage

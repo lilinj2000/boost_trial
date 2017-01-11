@@ -8,7 +8,7 @@ AC_CONFIG_SRCDIR([])
 
 AM_INIT_AUTOMAKE
 
-#AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR([m4])
 
 # Checks for programs.
 AC_PROG_CXX
@@ -22,6 +22,13 @@ AC_PROG_RANLIB
 # Checks for typedefs, structures, and compiler characteristics.
 #AC_CHECK_HEADER_STDBOOL
 
+dnl check c++11 features
+dnl AX_CXX_COMPILE_STDCXX_11([ext|noext],[mandatory|optional])
+AX_CXX_COMPILE_STDCXX_11([noext],[mandatory])
+dnl AX_CHECK_COMPILE_FLAG([-std=c++11], [CXXFLAGS="$CXXFLAGS -std=c++11"])
+
+AC_CHECK_PROGS(GCOV, [gcov-mp-4.8 gcov], gcov)
+
 # Checks for library functions.
 LT_RELEASE=0.1
 LT_CURRENT=0
@@ -34,15 +41,6 @@ AC_SUBST(LT_AGE)
 
 home_3rd=~/3rd
 home_libs=~/libs
-
-if test -d /llj/3rd ; then
-   home_3rd=/llj/3rd
-fi
-
-if test -d /llj/libs ; then
-   home_libs=/llj/libs
-fi
-
 
 dnl soil lib
 AC_ARG_WITH([soil],
@@ -81,9 +79,9 @@ AC_SUBST(BOOST_LIBADD)
 dnl gtest lib
 AC_ARG_WITH([gtest],
     [AS_HELP_STRING([--with-gtest],
-        [home path of the gtest, defaults to $topdir/../gtest])],
+        [home path of the gtest, defaults to $home_3rd/googletest])],
     [GTEST_HOME="$withval"],
-    [GTEST_HOME="$home_3rd/gtest"])
+    [GTEST_HOME="$home_3rd/googletest"])
 AC_SUBST([GTEST_HOME])
 
 GTEST_CPPFLAGS=-I$GTEST_HOME/include
@@ -91,8 +89,16 @@ GTEST_LIBADD="$GTEST_HOME/lib/libgtest.a $GTEST_HOME/lib/libgtest_main.a"
 AC_SUBST(GTEST_CPPFLAGS)
 AC_SUBST(GTEST_LIBADD)
 
+###########################
+# gcov coverage reporting
+###########################
+AC_TDD_GCOV
+AC_SUBST(COVERAGE_CFLAGS)
+AC_SUBST(COVERAGE_CXXFLAGS)
+AC_SUBST(COVERAGE_LDFLAGS)
+
 AC_OUTPUT([
 	Makefile
-	date_time/Makefile])
+	utest/Makefile])
 
 
